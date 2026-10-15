@@ -1,0 +1,21 @@
+read_verilog rtl/full_adder.v
+read_verilog rtl/mult_array.v
+
+hierarchy -top mult_array
+
+proc
+flatten
+opt
+
+techmap
+opt
+
+dfflibmap -liberty /foss/pdks/ciel/sky130/versions/1689ac3f2dc763876eaf967227c7dfe831b031ae/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+abc -liberty /foss/pdks/ciel/sky130/versions/1689ac3f2dc763876eaf967227c7dfe831b031ae/sky130A/libs.ref/sky130_fd_sc_hd/lib/sky130_fd_sc_hd__tt_025C_1v80.lib
+
+clean
+
+stat
+
+write_verilog synth/mult_array_sky130.v
