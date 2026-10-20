@@ -1,8 +1,9 @@
 create_clock -name clk -period 10 [get_ports clk]
 
-set_input_delay 0 -clock clk [get_ports a]
-set_input_delay 0 -clock clk [get_ports b]
-set_input_delay 0 -clock clk [get_ports rst_n]
+# Input timing
+set_input_delay -clock clk -max 2.0 [get_ports {a[*] b[*] rst_n}]
+set_input_delay -clock clk -min 0.5 [get_ports {a[*] b[*] rst_n}]
 
-set_output_delay 0 -clock clk [get_ports p]
-
+# Output timing
+set_output_delay -clock clk -max 2.0 [get_ports {p[*]}]
+set_output_delay -clock clk -min 0.5 [get_ports {p[*]}]
